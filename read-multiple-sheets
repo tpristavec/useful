@@ -1,0 +1,10 @@
+# Read in multiple Excel sheets simultaneously.
+
+sheetnames <- excel_sheets("./data/original/ers_ruca/ers_ruca_desc.xlsx")
+
+allsheets <- lapply(sheetnames, 
+                    function(x) read_excel("./data/original/ers_ruca/ers_ruca_desc.xlsx", sheet = x)
+                    )
+                    
+names(allsheets) <- sheetnames
+list2env(allsheets, envir = .GlobalEnv)
